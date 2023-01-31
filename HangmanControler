@@ -56,4 +56,19 @@ public class HangmanControler : MonoBehaviour
             var temp = Instantiate(letterContainer, wordContainer.transform);
         }
     }
+    
+    private void CreateButton(int i)
+    {
+        GameObject temp = Instantiate(letterButton, keyboardContainer.transform);
+        temp.GetComponentInChildren<TextMeshProUGUI>().text = ((char)i).ToString();
+        temp.GetComponent<Button>().onClick.AddListener(delegate { CheckLetter(((char)i).ToString()); });
+    }
+
+    private string generateWord()
+    {
+        string[] wordList = possibleWord.text.Split("\n");
+        string line = wordList[Random.Range(0, wordList.Length - 1)];
+        return line.Substring(0, line.Length - 1);
+    }
+    
 }    
