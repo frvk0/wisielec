@@ -22,4 +22,38 @@ public class HangmanControler : MonoBehaviour
         InitialiseButtons();
         InitaliseGame();
     }
-}
+
+    private void InitialiseButtons()
+    {
+        for (int i = 65; i <= 90; i++)
+        {
+            CreateButton(i);
+        }
+    }
+
+    private void InitaliseGame()
+    {
+        //reset data back to original state
+        incorrectGuesses = 0;
+        correctGuesses = 0;
+        foreach (Button child in keyboardContainer.GetComponentsInChildren<Button>())
+        {
+            child.interactable = true;
+        }
+        foreach (Transform child in wordContainer.GetComponentInChildren<Transform>())
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (GameObject stage in hangmanStages)
+        {
+            stage.SetActive(false);
+        }
+
+        //generate new word
+        word = generateWord().ToUpper();
+        foreach (char latter in word)
+        {
+            var temp = Instantiate(letterContainer, wordContainer.transform);
+        }
+    }
+}    
