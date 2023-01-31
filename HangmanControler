@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+
+public class HangmanControler : MonoBehaviour
+{
+    [SerializeField] GameObject wordContainer;
+    [SerializeField] GameObject keyboardContainer;
+    [SerializeField] GameObject letterContainer;
+    [SerializeField] GameObject[] hangmanStages;
+    [SerializeField] GameObject letterButton;
+    [SerializeField] TextAsset possibleWord;
+
+    private string word;
+    private int incorrectGuesses, correctGuesses;
+
+    void Start()
+    {
+        InitialiseButtons();
+        InitaliseGame();
+    }
+}
